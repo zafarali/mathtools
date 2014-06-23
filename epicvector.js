@@ -73,6 +73,12 @@ function vec2d(x,y){
 	this.x = x;
 	this.y = y;
 	this.dim = 2
+	this.add = function(vector){
+		var arr = [];
+		arr[0] = this.x + vector.x;
+		arr[1] = this.y + vector.y;
+		return new vec2d(arr);
+	}
 }
 
 //VEC3D OBJECT
@@ -81,6 +87,13 @@ function vec3d(x,y,z){
 	this.y = y;
 	this.z= z;
 	this.dim = 3;
+	this.add = function(vector){
+		var arr = [];
+		arr[0] = this.x + vector.x;
+		arr[1] = this.y + vector.y;
+		arr[2] = this.z + vector.z;
+		return new vec3d(arr); 
+	}
 }
 
 //VEC4D OBJECT
@@ -90,12 +103,27 @@ function vec4d(w,x,y,z){
 	this.y = y;
 	this.z = z;
 	this.dim = 4;
+	this.add = function(vector){
+		var arr = [];
+		arr[0] = this.w + vector.w;
+		arr[1] = this.x + vector.x;
+		arr[2] = this.y + vector.y;
+		arr[3] = this.z + vector.z;
+		return new vec4d(arr);		
+	}
 }
 
 //VECND OBJECT
 function vecnd(arr){
 	this.components = arr;
 	this.dim=arr.length;
+	this.add = function(vector){
+		var arr = [];
+		for(var i = 0, l=this.dim; i<l;i++){
+			arr[i] = this.components[i] + vector.components[i];
+		}
+		return new vecnd(arr);		
+	}
 }
 //test
 
