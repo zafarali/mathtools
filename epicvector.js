@@ -79,6 +79,15 @@ function vec2d(x,y){
 		arr[1] = this.y + vector.y;
 		return new vec2d(arr);
 	}
+
+	this.dot = function(vector){
+		if(EpicVector.sameDim(this,vector)){
+			var result = this.x * vector.x;
+				result = result + (this.y * vector.y);
+			return result;
+		}else{console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")}
+
+	}
 }
 
 //VEC3D OBJECT
@@ -93,6 +102,15 @@ function vec3d(x,y,z){
 		arr[1] = this.y + vector.y;
 		arr[2] = this.z + vector.z;
 		return new vec3d(arr); 
+	}
+
+	this.dot = function(vector){
+		if(EpicVector.sameDim(this,vector)){
+			var result = this.x * vector.x;
+				result = result + (this.y * vector.y);
+				result = result + (this.z * vector.z);
+			return result;
+		}else{console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")}
 	}
 }
 
@@ -111,6 +129,16 @@ function vec4d(w,x,y,z){
 		arr[3] = this.z + vector.z;
 		return new vec4d(arr);		
 	}
+
+	this.dot = function(vector){
+		if(EpicVector.sameDim(this,vector)){
+			var result = this.x * vector.x;
+				result = result + (this.y * vector.y);
+				result = result + (this.z * vector.z);
+				result = result + (this.w * vector.w);
+			return result;
+		}else{console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")}
+	}
 }
 
 //VECND OBJECT
@@ -124,22 +152,34 @@ function vecnd(arr){
 		}
 		return new vecnd(arr);		
 	}
+	
+	this.dot = function(vector){
+		if(EpicVector.sameDim(this, vector)){
+			var result = 0;
+			for(var i = 0, l=this.dim;i<l;i++){
+				result = result + (this.components[i]*vector.components[i]);
+			}
+			return result;
+		}else{
+			console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")
+		}
+	}
 }
 //test
 
-//following should print "{ x: 1, y: 2, dim: 2 }"
+//following should print "{ x: 1, y: 2, dim: 2 ...}"
 console.log(EpicVector.create(1,2));
 console.log(EpicVector.create([1,2]));
 
-//following should print "{ x: 1, y: 2, z: 3, dim: 3 }"
+//following should print "{ x: 1, y: 2, z: 3, dim: 3 ...}"
 console.log(EpicVector.create(1,2,3));
 console.log(EpicVector.create([1,2,3]));
 
-//following should print "{ w: 1, x: 2, y: 3, z: 4, dim: 4 }"
+//following should print "{ w: 1, x: 2, y: 3, z: 4, dim: 4 ...}"
 console.log(EpicVector.create([1,2,3,4]));
 console.log(EpicVector.create(1,2,3,4));
 
-//following should print "{ components: [ 1, 2, 3, 4, 5 ], dim: 5 }"
+//following should print "{ components: [ 1, 2, 3, 4, 5 ], dim: 5 ...}"
 console.log(EpicVector.create(1,2,3,4,5));
 console.log(EpicVector.create([1,2,3,4,5]));
 
