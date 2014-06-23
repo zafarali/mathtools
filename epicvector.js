@@ -65,6 +65,9 @@ var EpicVector = {
 				console.log("What?");
 				return false;
 		}
+	},
+	sameDim: function(vec1, vec2){
+		return vec1.dim===vec2.dim;
 	}
 }
 
@@ -74,10 +77,12 @@ function vec2d(x,y){
 	this.y = y;
 	this.dim = 2
 	this.add = function(vector){
-		var arr = [];
-		arr[0] = this.x + vector.x;
-		arr[1] = this.y + vector.y;
-		return new vec2d(arr);
+		if(EpicVector.sameDim(this,vector)){
+			var arr = [];
+			arr[0] = this.x + vector.x;
+			arr[1] = this.y + vector.y;
+			return new vec2d(arr);
+		}else{console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")}
 	}
 
 	this.dot = function(vector){
@@ -97,11 +102,13 @@ function vec3d(x,y,z){
 	this.z= z;
 	this.dim = 3;
 	this.add = function(vector){
-		var arr = [];
-		arr[0] = this.x + vector.x;
-		arr[1] = this.y + vector.y;
-		arr[2] = this.z + vector.z;
-		return new vec3d(arr); 
+		if(EpicVector.sameDim(this,vector)){
+			var arr = [];
+			arr[0] = this.x + vector.x;
+			arr[1] = this.y + vector.y;
+			arr[2] = this.z + vector.z;
+			return new vec3d(arr); 
+		}else{console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")}
 	}
 
 	this.dot = function(vector){
@@ -122,12 +129,14 @@ function vec4d(w,x,y,z){
 	this.z = z;
 	this.dim = 4;
 	this.add = function(vector){
-		var arr = [];
-		arr[0] = this.w + vector.w;
-		arr[1] = this.x + vector.x;
-		arr[2] = this.y + vector.y;
-		arr[3] = this.z + vector.z;
-		return new vec4d(arr);		
+		if(EpicVector.sameDim(this,vector)){
+			var arr = [];
+			arr[0] = this.w + vector.w;
+			arr[1] = this.x + vector.x;
+			arr[2] = this.y + vector.y;
+			arr[3] = this.z + vector.z;
+			return new vec4d(arr);
+		}else{console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")}		
 	}
 
 	this.dot = function(vector){
@@ -146,11 +155,13 @@ function vecnd(arr){
 	this.components = arr;
 	this.dim=arr.length;
 	this.add = function(vector){
-		var arr = [];
-		for(var i = 0, l=this.dim; i<l;i++){
-			arr[i] = this.components[i] + vector.components[i];
-		}
-		return new vecnd(arr);		
+		if(EpicVector.sameDim(this,vector)){
+			var arr = [];
+			for(var i = 0, l=this.dim; i<l;i++){
+				arr[i] = this.components[i] + vector.components[i];
+			}
+			return new vecnd(arr);		
+		}else{console.log("ERROR: VECTORS ARE NOT OF SAME DIM.")}
 	}
 	
 	this.dot = function(vector){
